@@ -48,7 +48,7 @@ const userSchema = new mongoose.Schema({
     following: [
         { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
     ],
-    firebaseUID: {
+    kindeId: {
         type: String,
         unique: true,
     },

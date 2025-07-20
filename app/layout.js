@@ -1,5 +1,11 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
+import { Provider } from "react-redux";
+import { store } from "@/lib/store";
+import StoreProvider from "@/redux/StoreProvider";
+import AuthSync from "@/components/AuthSync";
+import { AuthProvider } from "./AuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,12 +24,22 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+    <AuthProvider>
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <StoreProvider>
+          <AuthSync />
+          {children}
+        </StoreProvider>
+          <Toaster
+            position="top-right"
+            reverseOrder={false}
+          />
+        
       </body>
     </html>
+    </AuthProvider>
   );
 }

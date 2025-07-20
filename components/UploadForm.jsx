@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react';
 
 export default function UploadForm() {
-    const [image, setImage] = useState (null);
-    const [previewUrl, setPreviewUrl] = useState (null);
-    const [uploadedUrl, setUploadedUrl] = useState (null);
+    const [image, setImage] = useState(null);
+    const [previewUrl, setPreviewUrl] = useState(null);
+    const [uploadedUrl, setUploadedUrl] = useState(null);
 
     const handleFileChange = (e) => {
         const file = e.target.files?.[0];
@@ -16,24 +16,22 @@ export default function UploadForm() {
 
     const handleUpload = async () => {
         if (!image) return;
-
         const formData = new FormData();
         formData.append('file', image);
-
+        console.log(formData);
         const res = await fetch('/api/upload', {
             method: 'POST',
             body: formData,
         });
-
         const data = await res.json();
         console.log(data.data.url);
-        
         setUploadedUrl(data.data.url);
     };
-useEffect(()=>{
-    console.log(uploadedUrl);
     
-},[uploadedUrl])
+    useEffect(() => {
+        console.log(uploadedUrl);
+
+    }, [uploadedUrl])
     return (
         <div>
             <input type="file" onChange={handleFileChange} />

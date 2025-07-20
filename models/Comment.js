@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const commentSchema = new mongoose.Schema({
   post: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Post',
+    ref: 'Blog',
     required: true
   },
   author: {
@@ -13,7 +13,7 @@ const commentSchema = new mongoose.Schema({
   },
   content: {
     type: String,
-    minlength: [5, 'Comment must be at least 5 characters long.'],
+    minlength: [3, 'Comment must be at least 5 characters long.'],
     required: true
   },
   parentComment: {
