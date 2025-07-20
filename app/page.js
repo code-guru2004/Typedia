@@ -4,11 +4,8 @@
 import Link from "next/link";
 import { ArrowRight, BookOpen, Tags } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { auth } from "@/lib/firebaseClient";
-import { onAuthStateChanged } from "firebase/auth";
-import { PiUserCircleDuotone } from "react-icons/pi";
 import { useEffect } from "react";
-import AuthStatus from "@/components/AuthStatus";
+
 import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
 
 export default function HomePage() {
