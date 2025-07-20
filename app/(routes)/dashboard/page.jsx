@@ -3,7 +3,7 @@
 
 import { useEffect } from "react";
 import { LogoutLink, useKindeAuth } from "@kinde-oss/kinde-auth-nextjs";
-import { User2 } from "lucide-react";
+
 import { useDispatch } from "react-redux";
 import { login, logout } from "@/redux/slices/userSlice";
 import toast from "react-hot-toast";
