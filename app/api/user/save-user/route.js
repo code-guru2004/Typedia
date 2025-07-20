@@ -9,7 +9,7 @@ export async function POST(req) {
     try {
         await dbConnect(); // Connect to MongoDB
 
-        const { email, username, kindeId, userImg, given_name, family_name } = await req.json();
+        const { email, username, kindeId, userImg, given_name } = await req.json();
 
         if (!email || !username || !kindeId) {
             return NextResponse.json({ message: 'Missing required fields',success:false }, { status: 400 });
@@ -28,7 +28,7 @@ export async function POST(req) {
             kindeId,
             avatar: userImg || null,
             firstName: given_name || null,
-            lastName: family_name || null
+
         });
 
         return NextResponse.json({ message: 'User saved successfully', user: newUser,success:true }, { status: 201 });

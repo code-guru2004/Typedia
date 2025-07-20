@@ -19,7 +19,7 @@ export default function HomePage() {
       <section className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 text-white py-4 px-6 text-center flex flex-col items-center justify-center">
       <div className="w-full flex items-center justify-end lg:px-7">
       <LoginLink postLoginRedirectURL="/dashboard">Sign in</LoginLink>
-      <RegisterLink postLoginRedirectURL="/welcome">Sign up</RegisterLink>
+      <RegisterLink postLoginRedirectURL="/dashboard">Sign up</RegisterLink>
       </div>
         <div className="max-w-4xl mx-auto py-24">
           <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">

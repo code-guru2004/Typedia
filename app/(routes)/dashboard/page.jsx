@@ -29,7 +29,7 @@ export default function Dashboard() {
           username: user?.email.split('@')[0],
           userImg: user?.picture,
           given_name: user?.given_name,
-          family_name: user?.family_name
+         
         }),
       });
       
