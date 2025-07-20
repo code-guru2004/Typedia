@@ -4,7 +4,7 @@ import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import { store } from "@/lib/store";
 import StoreProvider from "@/redux/StoreProvider";
-import AuthSync from "@/components/AuthSync";
+
 import { AuthProvider } from "./AuthProvider";
 
 const geistSans = Geist({
@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <StoreProvider>
-          <AuthSync />
+          
           {children}
         </StoreProvider>
           <Toaster
