@@ -55,7 +55,7 @@ export default function Dashboard() {
   return( 
   <div>
       <h1>Welcome, {user?.given_name}</h1>
-      <LogoutLink>Log out</LogoutLink>
+      <LogoutLink postLogoutRedirectURL="https://typedia.vercel.app">Log out</LogoutLink>
   </div>
 );
 }
