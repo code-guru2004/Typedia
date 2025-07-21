@@ -6,6 +6,7 @@ import { store } from "@/lib/store";
 import StoreProvider from "@/redux/StoreProvider";
 
 import { AuthProvider } from "./AuthProvider";
+import ClientUserLoader from "@/components/shared/ClientUserLoader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,21 +26,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <AuthProvider>
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <StoreProvider>
-          
-          {children}
-        </StoreProvider>
-          <Toaster
-            position="top-right"
-            reverseOrder={false}
-          />
-        
-      </body>
-    </html>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <StoreProvider>
+            <ClientUserLoader /> {/* 🔥 Always mounted */}
+            {children}
+          </StoreProvider>
+          <Toaster position="top-right" reverseOrder={false} />
+        </body>
+      </html>
     </AuthProvider>
   );
 }

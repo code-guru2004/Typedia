@@ -17,16 +17,6 @@ import toast from 'react-hot-toast';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import slugify from 'slugify';
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command"
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Badge } from '@/components/ui/badge';
 import TagSearchSelect from '@/components/shared/TagSearchSelect';
 
 const TiptapEditor = dynamic(() => import('@/components/shared/TiptapEditor'), {
@@ -48,9 +38,9 @@ const formSchema = z.object({
 
 
 export default function CreateBlogPage() {
+  const { email } = useSelector((state) => state.user);
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
-  const { email } = useSelector((state) => state.user);
   const [allTags, setAllTags] = useState([]);
   const [search, setSearch] = useState("");
   const [selectedTags, setSelectedTags] = useState([]);
@@ -76,11 +66,13 @@ export default function CreateBlogPage() {
     },
   });
 
-  const { uid } = useSelector((state) => state.user); // Add proper user type in real case
+
   const router = useRouter();
 
   // get categories
   useEffect(() => {
+    
+    
     async function fetchMeta() {
       try {
         const catRes = await fetch('/api/category/get'); // GET route to fetch all categories
@@ -173,9 +165,9 @@ export default function CreateBlogPage() {
     }
   };
   useEffect(() => {
-    console.log(image);
+    console.log(email);
 
-  }, [image])
+  }, [email])
   return (
     <div className="max-w-3xl mx-auto p-6">
       <h1 className="text-2xl font-semibold mb-4">Create New Blog</h1>

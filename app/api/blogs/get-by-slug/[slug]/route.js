@@ -3,7 +3,8 @@ import { NextResponse } from 'next/server';
 
 import { dbConnect } from '@/lib/dbConnect';
 import Blog from '@/models/Blog';
-
+import Category from '@/models/Category';
+import Tag from '@/models/Tag';
 
 export async function GET(req, context) {
     const { slug } = context.params;

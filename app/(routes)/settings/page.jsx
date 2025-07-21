@@ -1,14 +1,14 @@
-'use client'
-import React from 'react'
-import { useSelector } from 'react-redux'
+"use client";
+import { useSelector } from "react-redux";
 
-function UserSettings() {
-  const {email} = useSelector(state=>state.user)
+
+export default function SomePage() {
+  const user = useSelector((state) => state.user);
+
   return (
     <div>
-      {email}
+      <p>Email: {user.email}</p>
+      <p>Is Logged In: {user.isLoggedIn.toString()}</p>
     </div>
-  )
+  );
 }
-
-export default UserSettings
