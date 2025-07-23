@@ -23,11 +23,15 @@ export default function BlogPage() {
     const { user, isAuthenticated } = useKindeAuth();
 
     useEffect(() => {
-      console.log('asfasfas');
+      
       async function addView(){
         const resp = await axios.post("/api/blogs/view",{
             slug
         })
+        if(resp){
+            console.log(resp.data.ip);
+            
+        }
       }
       addView()
       }, []);
