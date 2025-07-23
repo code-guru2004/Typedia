@@ -12,11 +12,13 @@ export async function GET(req) {
 
     const blogs = await Blog.find({ isPublished: true })
         .populate("author", "username")
-        .populate("category", "name")
+        .populate("category", "name slug")
         .sort({ createdAt: -1 })
         .skip(skip)
         .limit(limit);
 
+        // console.log(blogs);
+        
     const total = await Blog.countDocuments({ isPublished: true });
 
     return NextResponse.json({ blogs, total });

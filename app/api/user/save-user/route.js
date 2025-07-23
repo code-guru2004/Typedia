@@ -10,7 +10,7 @@ export async function POST(req) {
         await dbConnect(); // Connect to MongoDB
 
         const { email, username, kindeId, userImg, given_name } = await req.json();
-console.log(email, username, kindeId, userImg, given_name );
+
 
         if (!email || !username || !kindeId) {
             return NextResponse.json({ message: 'Missing required fields',success:false }, { status: 400 });

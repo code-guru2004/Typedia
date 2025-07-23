@@ -7,7 +7,7 @@ import Category from '@/models/Category';
 import Tag from '@/models/Tag';
 
 export async function GET(req, context) {
-    const { slug } = context.params;
+    const { slug } = await context.params;
 
     await dbConnect();
 

@@ -6,7 +6,7 @@ export async function POST(req) {
   await dbConnect();
   const body = await req.json();
   const {userEmail, ...blogData} = body;
-console.log(body);
+
 
   if (!userEmail) {
     return new Response(JSON.stringify({ message: "Unauthorized entry" }), {

@@ -10,6 +10,7 @@ import axios from 'axios';
 import CommentForm from '@/components/shared/CommentForm';
 import AllComments from '@/components/shared/AllComments';
 import Image from 'next/image';
+import { useKindeAuth } from '@kinde-oss/kinde-auth-nextjs';
 
 
 export default function BlogPage() {
@@ -18,6 +19,19 @@ export default function BlogPage() {
     const [blog, setBlog] = useState(null);
     const [loading, setLoading] = useState(true);
     const [comments, setComments] = useState([]);
+
+    const { user, isAuthenticated } = useKindeAuth();
+
+    useEffect(() => {
+      console.log('asfasfas');
+      async function addView(){
+        const resp = await axios.post("/api/blogs/view",{
+            slug
+        })
+      }
+      addView()
+      }, []);
+
 
     useEffect(() => {
         async function fetchBlog() {
