@@ -5,24 +5,53 @@ import Blog from "@/models/Blog";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
-  await dbConnect();
+  try {
+    const { slug } = await req.json();
 
-  // Extract client IP manually from headers
-  const forwardedFor = req.headers.get('x-forwarded-for');
-  const devFakeIp = '192.168.1.100'; // use different ones to simulate multiple users
-  
-  const ip =
-    process.env.NODE_ENV === 'development'
-      ? devFakeIp
-      : forwardedFor?.split(',')[0]?.trim() || 'UNKNOWN_IP';
-  
+    if (!slug) {
+      return NextResponse.json({ success: false, message: "Missing blog slug" }, { status: 400 });
+    }
 
-  console.log('clientIp:', ip);
+    // Get IP
+    const forwardedFor = req.headers.get("x-forwarded-for");
+    const devFakeIp = "192.168.1.100"; // Simulated unique IP during development
 
-  return NextResponse.json({
-    success: true,
-    message: "ADD VIEW",
-    ip,
-  });
+    const ip =
+      process.env.NODE_ENV === "development"
+        ? devFakeIp
+        : forwardedFor?.split(",")[0]?.trim() || "UNKNOWN_IP";
+
+    console.log("clientIp:", ip);
+
+    // Connect to DB
+    await dbConnect();
+
+    // Find the blog by slug
+    const blog = await Blog.findOne({ slug });
+
+    if (!blog) {
+      return NextResponse.json({ success: false, message: "Blog not found" }, { status: 404 });
+    }
+
+    // Check if this IP has already viewed the blog
+    const isAlreadyViewed = blog.viewedBy.includes(ip);
+
+    if (!isAlreadyViewed) {
+      blog.views += 1;
+      blog.viewedBy.push(ip);
+      await blog.save();
+    }
+
+    return NextResponse.json({
+      success: true,
+      view: blog.views,
+    });
+
+  } catch (error) {
+    console.error("View Error:", error);
+    return NextResponse.json({
+      success: false,
+      message: "Server error",
+    }, { status: 500 });
+  }
 }
-

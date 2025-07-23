@@ -23,18 +23,18 @@ export default function BlogPage() {
     const { user, isAuthenticated } = useKindeAuth();
 
     useEffect(() => {
-      
-      async function addView(){
-        const resp = await axios.post("/api/blogs/view",{
-            slug
-        })
-        if(resp){
-            console.log(resp.data.ip);
-            
+
+        async function addView() {
+            const resp = await axios.post("/api/blogs/view", {
+                slug
+            })
+            if (resp) {
+                console.log(resp.data.ip);
+
+            }
         }
-      }
-      addView()
-      }, []);
+        addView()
+    }, []);
 
 
     useEffect(() => {
@@ -161,9 +161,10 @@ export default function BlogPage() {
 
     return (
         <div className="max-w-3xl mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-2 border-l-4 border-blue-500 px-2">
+            <h1 className="text-3xl font-bold mb-2 border-l-4 border-blue-500 px-2 whitespace-normal break-words">
                 {blog.title.charAt(0).toUpperCase() + blog.title.slice(1)}
             </h1>
+
             <p className="text-gray-500 text-sm mb-4">
                 By <span className="font-medium">{blog.author?.username || 'Unknown'}</span> |{' '}
                 {new Date(blog.createdAt).toLocaleString(undefined, {
