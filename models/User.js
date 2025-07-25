@@ -48,6 +48,12 @@ const userSchema = new mongoose.Schema({
     following: [
         { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
     ],
+    likedPosts: [
+        { type: mongoose.Schema.Types.ObjectId, ref: 'Blog' }
+    ],
+    viewedPosts: [
+        { type: mongoose.Schema.Types.ObjectId, ref: 'Blog' }
+    ],
     kindeId: {
         type: String,
         unique: true,

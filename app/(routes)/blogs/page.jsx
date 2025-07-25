@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import BlogCard from "@/components/shared/BlogCard";
 import CategoryList from "@/components/shared/CategoryList";
+import NewBlogCard from "@/components/shared/NewBlogCard";
 
 export default function AllBlogsPage() {
   const [blogs, setBlogs] = useState([]);
@@ -25,9 +26,15 @@ export default function AllBlogsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Blogs List (2/3) */}
         <div className="lg:col-span-2 space-y-6">
-          {blogs.map((blog) => (
-            <BlogCard key={blog._id} blog={blog} />
-          ))}
+          <div className="grid grid-cols-1 lg:grid-cols-2 items-center justify-center">
+            {blogs.map((blog) => (
+            
+              <div key={blog?._id}>
+                  <NewBlogCard blog={blog} />
+              </div>
+            ))}
+
+          </div>
         </div>
 
         {/* Category Sidebar (1/3) */}

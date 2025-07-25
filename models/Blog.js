@@ -40,12 +40,12 @@ const blogSchema = new mongoose.Schema({
         default: 0
     },
     likes: {
-        type: Number,
-        default: 0
+        type: [String],
+        default: []
     },
     dislikes: {
-        type: Number,
-        default: 0,
+        type: [String],
+        default: []
     },
     views: {
         type: Number,

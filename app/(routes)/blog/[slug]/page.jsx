@@ -11,6 +11,7 @@ import CommentForm from '@/components/shared/CommentForm';
 import AllComments from '@/components/shared/AllComments';
 import Image from 'next/image';
 import { useKindeAuth } from '@kinde-oss/kinde-auth-nextjs';
+import { ThumbsDown, ThumbsUp } from 'lucide-react';
 
 
 export default function BlogPage() {
@@ -71,7 +72,7 @@ export default function BlogPage() {
         );
     }
 
-    if (!blog) return null;
+    
     const formatDate = (date) => {
         return date.toLocaleString('en-US', {
             dateStyle: 'medium',
@@ -193,6 +194,14 @@ export default function BlogPage() {
 
             <Separator className="my-4" />
 
+            <div className='flex items-center gap-3'>
+                <button className='flex items-center gap-1 bg-green-200 border-2 border-green-500 text-green-700 p-2 rounded-md'>
+                    <ThumbsUp /> <span>•</span> {blog.likes}
+                </button>
+                <button className='flex items-center gap-1 bg-red-200 border-2 border-red-500 text-red-700 p-2 rounded-md'>
+                    <ThumbsDown /> <span>•</span> {blog.dislikes}
+                </button>
+            </div>
             <div className="flex flex-wrap items-center gap-2 mt-4">
                 <span className="text-sm font-semibold">Tags:</span>
                 {blog.tags?.map((tag) => (

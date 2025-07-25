@@ -25,7 +25,7 @@ const TiptapEditor = dynamic(() => import('@/components/shared/TiptapEditor'), {
 });
 
 const formSchema = z.object({
-  title: z.string().min(5),
+  title: z.string().min(5).max(35),
   slug: z.string().min(3),
   content: z.string().min(10),
   coverImage: z.string().url().optional(),
