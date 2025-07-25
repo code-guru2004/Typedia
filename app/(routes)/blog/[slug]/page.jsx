@@ -196,10 +196,10 @@ export default function BlogPage() {
 
             <div className='flex items-center gap-3'>
                 <button className='flex items-center gap-1 bg-green-200 border-2 border-green-500 text-green-700 p-2 rounded-md'>
-                    <ThumbsUp /> <span>•</span> {blog.likes}
+                    <ThumbsUp /> <span>•</span> {blog.likes.length}
                 </button>
                 <button className='flex items-center gap-1 bg-red-200 border-2 border-red-500 text-red-700 p-2 rounded-md'>
-                    <ThumbsDown /> <span>•</span> {blog.dislikes}
+                    <ThumbsDown /> <span>•</span> {blog.dislikes.length}
                 </button>
             </div>
             <div className="flex flex-wrap items-center gap-2 mt-4">
